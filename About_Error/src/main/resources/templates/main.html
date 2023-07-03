@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!--bootstrap css-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <!--css링크-->
+  <link href="main.css" rel="stylesheet" type="text/css"/>
+</head>
+
+<body>
+<form action="">
+
+  <!--navbar-->
+  <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand text-white" href="home.jsp"><i class="fa-solid fa-paw text-white" style="font-size:23px;"> ITe</i></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active text-white" aria-current="page" href="./home.jsp"><i class="fa-solid fa-house text-success"></i> <i>&nbsp;Home</i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="./hospital/hospital.jsp"><i class="fa-solid fa-circle-h text-success"></i>  <i>&nbsp;Error</i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="./post/post_list.jsp"><i class="fa-solid fa-signs-post text-success"></i> <i>&nbsp;Post</i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="./login.jsp"><i class="fa-solid fa-user text-success"></i> <i>&nbsp;Login / Registration</i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!--main-->
+  <main class="container">
+    <div class="p-4 p-md-5 m-4 bg-dark text-white">
+      <div class="col-md-6 px-0">
+        <h1 class="display-4 fst-italic">ITe</h1>
+        <p class="lead my-3">IT 용어 기술과 오류해결 소개에 대한 글 작성하기...</p>
+        <p class="lead mb-0">
+          <a href="#" class="text-white fw-bold">Continue...</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
+      <div class="text-bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+        <div class="my-3 py-3">
+          <h2 class="display-5">IT 용어</h2>
+          <p class="lead">it용어에 대한 지식을...</p>
+        </div>
+        <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+      </div>
+      <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+        <div class="my-3 p-3">
+          <h2 class="display-5">Error</h2>
+          <p class="lead">에러를 해결...</p>
+        </div>
+        <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+      </div>
+    </div>
+  </main>
+
+  <!--footer-->
+  <footer class="mt-4 py-5 bg-dark text-white">
+    <div class="container">
+      <p class="float-end mb-1">
+        <a href="#"><button>위로</button></a>
+      </p>
+      <p class="mb-1">&copy; ITe.</p>
+    </div>
+  </footer>
+
+</form>
+
+<!--bootstrap js-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+</body>
+</html>
