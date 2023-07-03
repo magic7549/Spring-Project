@@ -1,0 +1,23 @@
+/*navbar*/
+.navbar-expand-lg{
+  background: linear-gradient(120deg, rgb(66, 132, 255), rgb(204, 168, 255));
+}
+
+/*main*/
+.text{
+  display: inline; vertical-align: middle;
+  border-right: .05em solid black;
+  animation:  cursor 0.2s ease infinite;
+}
+
+.main_box {
+  transition: all 0.2s linear;
+}
+.main_box:hover{
+  transform: scale(1.2);
+}
+
+/*footer*/
+footer{
+  background: linear-gradient(120deg, rgb(66, 132, 255), rgb(204, 168, 255));
+}
