@@ -58,7 +58,11 @@ public class MemberController {
     @PostMapping("/findPassword")
     public String findPasswordProcess(Model model, FindMemberPassword request) {
         String tempPw = memberService.updatePassword(request);
-        model.addAttribute("password", tempPw);
+        if (tempPw == null) {
+            model.addAttribute("password", "존재하지 않는 회원입니다.");
+        } else {
+            model.addAttribute("password", tempPw);
+        }
         return "/completeFindPassword";
     }
 }

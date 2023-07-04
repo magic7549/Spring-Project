@@ -38,6 +38,13 @@ public class MemberService {
     @Transactional
     public String updatePassword(FindMemberPassword dto) {
         Optional<Member> member = memberRepository.findByEmail(dto.getEmail());
+
+        // 회원정보가 없을 경우 null
+        if (member.isEmpty() || !member.get().getPhone().equals(dto.getPhone())) {
+            return null;
+        }
+
+        // 랜덤 임시 비밀번호 발급
         String tempPw = RandomStringUtils.random(8, true, true);
         member.get().updatePassword(bCryptPasswordEncoder.encode(tempPw));
 
