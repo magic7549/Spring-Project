@@ -5,10 +5,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class AddMemberRequest {
+public class FindMemberPassword {
 
     private String email;
-    private String password;
-    private String name;
     private String phone;
 }

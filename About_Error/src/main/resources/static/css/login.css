@@ -1,0 +1,41 @@
+/*login*/
+@charset "UTF-8";
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+}
+
+
+.login_txt{
+  margin-top: 100px;
+}
+
+.login_txt_img{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form-floating{
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.form-control{
+  width: 500px;
+}
+
+.login_btn{
+  width: 500px;
+  background: linear-gradient(120deg, rgb(66, 132, 255), rgb(204, 168, 255));
+}
+

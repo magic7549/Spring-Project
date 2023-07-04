@@ -1,0 +1,22 @@
+*{
+  font-family: 'Do Hyeon', sans-serif;
+  }
+
+  .wrap {
+      width: 1100px;
+      margin: auto;
+  }
+
+  .comment {
+      color: orange;
+      font-weight: bold;
+  }
+
+  .jumbotron{
+    margin-top: 20px;
+  }
+
+  .navigation{
+    display: flex;
+    justify-content: center;
+  }

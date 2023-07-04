@@ -30,13 +30,13 @@ public class Member implements UserDetails {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "member_name")
-    private String member_name;
+    @Column(name = "name", nullable = false)
+    private String name;
 
-    @Column(name = "phone")
+    @Column(name = "phone", nullable = false, unique = true)
     private String phone;
 
     @CreatedDate
@@ -44,10 +44,10 @@ public class Member implements UserDetails {
     private Timestamp signup_date;
 
     @Builder
-    public Member(String email, String password, String member_name, String phone) {
+    public Member(String email, String password, String name, String phone) {
         this.email = email;
         this.password = password;
-        this.member_name = member_name;
+        this.name = name;
         this.phone = phone;
     }
 
@@ -58,7 +58,7 @@ public class Member implements UserDetails {
 
     @Override
     public String getUsername() {
-        return member_name;
+        return name;
     }
 
     @Override

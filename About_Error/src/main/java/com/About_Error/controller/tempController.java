@@ -18,25 +18,13 @@ public class tempController {
         return "main";
     }
 
-    @GetMapping("/login")
-    public String loginPage() {
-        return "login";
-    }
-
-    @GetMapping("/signup")
-    public String signupPage() {
-        return "signup";
-    }
-
-    @PostMapping("/signup")
-    public String signupProcess(AddMemberRequest request) {
-        memberService.save(request);
-
-        return "redirect:/login";
-    }
-
     @GetMapping("/main")
     public String mainHome() {
         return "main";
+    }
+
+    @GetMapping("/term")
+    public String termPage() {
+        return "term";
     }
 }

@@ -3,8 +3,8 @@ const text = document.querySelector(".text")
 let index = 0;
 
 function sleep(delay){ 
-  const start = new Date().getTime(); 
-  while (new Date().getTime() < start + delay); 
+    const start = new Date().getTime(); 
+    while (new Date().getTime() < start + delay); 
     }
 
 function typing(){

@@ -1,7 +1,10 @@
 /*navbar*/
-.navbar-expand-lg{
-  background: linear-gradient(120deg, rgb(66, 132, 255), rgb(204, 168, 255));
-}
+/* nav{
+  position: sticky;
+  top: 0; 
+  width: 100%;
+  z-index : 1;
+} */
 
 /*main*/
 .text{

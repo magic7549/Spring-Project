@@ -1,20 +1,23 @@
 package com.About_Error.config;
 
+import com.About_Error.service.MemberDetailService;
+import com.About_Error.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
 
 @RequiredArgsConstructor
 @Configuration
-@EnableWebSecurity
 public class WebSecurityConfig {
+
+    private final MemberDetailService memberDetailService;
 
     @Bean
     public WebSecurityCustomizer configure() {
@@ -27,14 +30,25 @@ public class WebSecurityConfig {
         http.csrf((csrf) -> csrf.disable());
         http.authorizeHttpRequests((authorizeHttpRequests) ->
                 authorizeHttpRequests
-                        //.requestMatchers("/main").authenticated()
+                        .requestMatchers("/term").authenticated()
                         .anyRequest().permitAll()
         ).formLogin(formLogin ->
                 formLogin.loginPage("/login")
                         .defaultSuccessUrl("/main")
                         .failureUrl("/login")
+                        .usernameParameter("member_id")
+                        .passwordParameter("member_password")
                         .permitAll());
         return http.build();
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(HttpSecurity http, BCryptPasswordEncoder bCryptPasswordEncoder) throws Exception {
+        return http.getSharedObject(AuthenticationManagerBuilder.class)
+                .userDetailsService(memberDetailService)
+                .passwordEncoder(bCryptPasswordEncoder)
+                .and()
+                .build();
     }
 
     @Bean

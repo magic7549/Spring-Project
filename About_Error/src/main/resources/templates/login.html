@@ -7,16 +7,34 @@
     <!--bootstrap css-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!--css링크-->
-    <link href="/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="/css/login.css" rel="stylesheet" type="text/css" />
 </head>
-<body>
-<h1>Login</h1>
-<form action="/login" method="POST">
-    ID : <input type="email" name="username" placeholder="toto@naver.com"><br>
-    password : <input type="password" name="password" placeholder="비밀번호를 입력해주세요."><br>
-    <button>로그인</button>
+<body class="text-center">
+
+        <h1 class="login_txt">Login</h1><br>
+        <img class="mb-4 login_img" src="/image/main_img.gif" alt="" width="300" height="200"><br>
+
+    <form class="container login_form" action="/login" method="POST">
+        
+    <div class="form-floating">
+        <input type="email" name="member_id" class="form-control" id="floatingInput" placeholder="name@example.com">
+        <label for="floatingInput">Email</label>
+    </div>
+    <div class="form-floating">
+        <input type="password" name="member_password" class="form-control" id="floatingPassword" placeholder="Password">
+        <label for="floatingPassword">Password</label>
+    </div>
+    <div class="checkbox mb-3">
+        <label>
+            <input type="checkbox" value="remember-me"> Remember me
+        </label>
+    </div>
+    <button class="btn btn-lg login_btn" type="submit">로그인</button>
 </form>
-<a href="/signup">Registration</a>
+<br>
+<a class="a_txt" href="/findPassword">비밀번호 찾기</a> |
+<a class="a_txt" href="/findEmail">아이디 찾기</a> |
+<a class="a_txt" href="/signup">회원가입</a>
 
 <!--bootstrap js-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
