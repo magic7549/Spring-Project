@@ -53,7 +53,7 @@ public class Member implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("user"));
+        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
     @Override
@@ -64,6 +64,10 @@ public class Member implements UserDetails {
     @Override
     public String getPassword() {
         return password;
+    }
+
+    public void updatePassword(String password) {
+        this.password = password;
     }
 
     @Override

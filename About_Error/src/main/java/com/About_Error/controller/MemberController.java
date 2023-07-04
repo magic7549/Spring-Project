@@ -2,6 +2,7 @@ package com.About_Error.controller;
 
 import com.About_Error.dto.AddMemberRequest;
 import com.About_Error.dto.FindMemberEmail;
+import com.About_Error.dto.FindMemberPassword;
 import com.About_Error.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -55,7 +56,9 @@ public class MemberController {
     }
 
     @PostMapping("/findPassword")
-    public String findPasswordProcess(Model model, FindMemberEmail request) {
+    public String findPasswordProcess(Model model, FindMemberPassword request) {
+        String tempPw = memberService.updatePassword(request);
+        model.addAttribute("password", tempPw);
         return "/completeFindPassword";
     }
 }

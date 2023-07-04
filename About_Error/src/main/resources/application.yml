@@ -18,8 +18,3 @@ spring:
     url: jdbc:mysql://localhost:3306/about_error?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
     username: root
     password: 1234
-
-jwt:
-  header: Authorization
-  secret: rutyweorituwyerotiuweyrtoiuweyrtoweiurtywoeighdfsojkghsdfgsdofiguwyertouw
-  access-token-validity-in-seconds: 600 # 10 min

@@ -1,7 +1,6 @@
 package com.About_Error.config;
 
 import com.About_Error.service.MemberDetailService;
-import com.About_Error.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,7 +29,7 @@ public class WebSecurityConfig {
         http.csrf((csrf) -> csrf.disable());
         http.authorizeHttpRequests((authorizeHttpRequests) ->
                 authorizeHttpRequests
-                        .requestMatchers("/term").authenticated()
+                        .requestMatchers("/term").hasRole("USER")
                         .anyRequest().permitAll()
         ).formLogin(formLogin ->
                 formLogin.loginPage("/login")
