@@ -20,7 +20,7 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-public class Member implements UserDetails {
+public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,54 +39,23 @@ public class Member implements UserDetails {
     @Column(name = "phone", nullable = false, unique = true)
     private String phone;
 
+    @Enumerated(EnumType.STRING)
+    private Authority authority;
+
     @CreatedDate
     @Column(name = "signup_date")
     private Timestamp signup_date;
 
     @Builder
-    public Member(String email, String password, String name, String phone) {
+    public Member(String email, String password, String name, String phone, Authority authority) {
         this.email = email;
         this.password = password;
         this.name = name;
         this.phone = phone;
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
-    }
-
-    @Override
-    public String getUsername() {
-        return name;
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
+        this.authority = authority;
     }
 
     public void updatePassword(String password) {
         this.password = password;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
     }
 }

@@ -1,7 +1,7 @@
 package com.About_Error.service;
 
 import com.About_Error.domain.Member;
-import com.About_Error.dto.AddMemberRequest;
+import com.About_Error.dto.AddMemberRequestDto;
 import com.About_Error.dto.FindMemberEmail;
 import com.About_Error.dto.FindMemberPassword;
 import com.About_Error.repository.MemberRepository;
@@ -20,7 +20,7 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public Long save(AddMemberRequest dto) {
+    public Long save(AddMemberRequestDto dto) {
         return memberRepository.save(Member.builder()
                 .email(dto.getEmail())
                 .password(bCryptPasswordEncoder.encode(dto.getPassword()))
