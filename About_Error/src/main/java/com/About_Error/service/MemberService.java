@@ -1,5 +1,6 @@
 package com.About_Error.service;
 
+import com.About_Error.domain.Authority;
 import com.About_Error.domain.Member;
 import com.About_Error.dto.AddMemberRequestDto;
 import com.About_Error.dto.FindMemberEmail;
@@ -20,13 +21,14 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public Long save(AddMemberRequestDto dto) {
-        return memberRepository.save(Member.builder()
+    public void save(AddMemberRequestDto dto) {
+        memberRepository.save(Member.builder()
                 .email(dto.getEmail())
                 .password(bCryptPasswordEncoder.encode(dto.getPassword()))
                 .name(dto.getName())
                 .phone(dto.getPhone())
-                .build()).getIdx();
+                .authority(Authority.ROLE_USER)
+                .build());
     }
 
     public String findMemberEmail(FindMemberEmail dto) {
