@@ -5,6 +5,7 @@ import com.About_Error.domain.Member;
 import com.About_Error.domain.RefreshToken;
 import com.About_Error.dto.*;
 import com.About_Error.service.AuthService;
+import com.About_Error.service.MemberService;
 import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
     private final AuthService authService;
-    private final TokenProvider tokenProvider;
+    private final MemberService memberService;
 
     @PostMapping("/signup")
     public ResponseEntity signup(@RequestBody AddMemberRequestDto request) {
@@ -34,6 +35,21 @@ public class AuthController {
         }
 
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/signup/email")
+    public boolean hasEmail(@RequestBody HasMemberEmailRequestDto request) {
+        return memberService.hasMemberEmail(request);
+    }
+
+    @PostMapping("/validateToken")
+    public ResponseEntity validateToken(@RequestBody AccessTokenDto token) {
+        if (authService.validateToken(token)) {
+            return ResponseEntity.status(HttpStatus.OK).body(true);
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.OK).body(false);
+        }
     }
 
 //    @PostMapping("/refreshToken")

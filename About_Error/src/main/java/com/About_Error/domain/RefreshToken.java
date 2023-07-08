@@ -1,20 +1,24 @@
 package com.About_Error.domain;
 
+import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.redis.core.RedisHash;
 
+@Table(name = "refreshes")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-@RedisHash(value = "refresh", timeToLive = 60 * 24 * 7)
+@Entity
 public class RefreshToken {
 
     @Id
-    private String refreshToken;
+    @Column(name = "refresh")
+    private String refresh;
+
+    @Column(name = "email")
     private String email;
 
     @Builder
-    public RefreshToken(String refreshToken, String email) {
-        this.refreshToken = refreshToken;
+    public RefreshToken(String refresh, String email) {
+        this.refresh = refresh;
         this.email = email;
     }
 }

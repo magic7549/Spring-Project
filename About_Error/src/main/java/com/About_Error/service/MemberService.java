@@ -5,6 +5,7 @@ import com.About_Error.domain.Member;
 import com.About_Error.dto.AddMemberRequestDto;
 import com.About_Error.dto.FindMemberEmail;
 import com.About_Error.dto.FindMemberPassword;
+import com.About_Error.dto.HasMemberEmailRequestDto;
 import com.About_Error.repository.MemberRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +30,15 @@ public class MemberService {
                 .phone(dto.getPhone())
                 .authority(Authority.ROLE_USER)
                 .build());
+    }
+
+    public boolean hasMemberEmail(HasMemberEmailRequestDto dto) {
+        Optional<Member> member = memberRepository.findByEmail(dto.getEmail());
+        if (member.isEmpty()) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     public String findMemberEmail(FindMemberEmail dto) {

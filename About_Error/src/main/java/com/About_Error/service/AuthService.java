@@ -2,6 +2,7 @@ package com.About_Error.service;
 
 import com.About_Error.config.jwt.TokenProvider;
 import com.About_Error.domain.RefreshToken;
+import com.About_Error.dto.AccessTokenDto;
 import com.About_Error.dto.AddMemberRequestDto;
 import com.About_Error.dto.LoginMemberRequestDto;
 import com.About_Error.dto.LoginMemberResponseDto;
@@ -48,7 +49,12 @@ public class AuthService {
         String accessToken = tokenProvider.createAccessToken(authentication);
         String refreshToken = tokenProvider.createRefreshToken(authentication);
 
-        // refreshToken redis 메모리에 저장
+        refreshTokenRepository.save(RefreshToken.builder()
+                .refresh(refreshToken)
+                .email(request.getEmail())
+                .build());
+
+//       //refreshToken redis 메모리에 저장
 //        refreshTokenRepository.save(RefreshToken.builder()
 //                .refreshToken(refreshToken)
 //                .email(request.getEmail())
@@ -64,7 +70,11 @@ public class AuthService {
         return loginResponse;
     }
 
-    public Optional<RefreshToken> findRefreshToken(String refreshToken) {
-        return refreshTokenRepository.findByValue(refreshToken);
+    public boolean validateToken(AccessTokenDto token) {
+        return tokenProvider.validateToken(token.getAccessToken());
+    }
+
+    public Optional<RefreshToken> findRefreshToken(String refresh) {
+        return refreshTokenRepository.findByRefresh(refresh);
     }
 }

@@ -10,3 +10,8 @@ create table members (
     role VARCHAR(20) NOT NULL,
     signup_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
+create table refreshes (
+	refresh VARCHAR(200) NOT NULL PRIMARY KEY,
+    email VARCHAR(50) NOT NULL UNIQUE
+);
