@@ -1,37 +1,38 @@
 import React from 'react';
+import Login from '../components/Login';
 
-//Bootstrap Navbar import
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+//Bootstrap Navbar
+import {
+  Container,
+  Nav,
+  Navbar
+}from 'react-bootstrap';
 
-import { Link } from 'react-router-dom'
 //Bootstrap css
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Header = () => {
-    return (
-    <header>
-        <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary sticky-top">
-          <Container>
-            <Navbar.Brand href="/">ITe</Navbar.Brand>
-            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-            <Navbar.Collapse id="responsive-navbar-nav">
-              <Nav className="ms-auto">
-                <Nav.Link href="#">IT Quiz</Nav.Link>
-                <Nav.Link href="#">Error</Nav.Link>
-                <Nav.Link href="#">Communication</Nav.Link>
-                <Nav.Link href="/temp">인증test</Nav.Link>
-              </Nav>
-              <Nav>
-                <Nav.Link href='/login'>로그인</Nav.Link>
-                <Nav.Link href="/signup">회원가입</Nav.Link>
-              </Nav>
-            </Navbar.Collapse>
-          </Container>
-        </Navbar>
-    </header>
-    )
+  const accessToken = localStorage.getItem('accessToken');
+
+  return (
+    <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
+      <Container>
+        <Navbar.Brand href="/">ITe</Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link href="#">IT Quiz</Nav.Link>
+            <Nav.Link href="#">Error</Nav.Link>
+            <Nav.Link href="#">Communication</Nav.Link>
+            <Nav.Link href="/temp">인증test</Nav.Link>
+          </Nav>
+          <Nav>
+            {accessToken ? (<Nav.Link href='/logout'>로그아웃</Nav.Link>) : (<><Nav.Link href="/login">로그인</Nav.Link><Nav.Link href="/signup">회원가입</Nav.Link></>)}
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  )
 };
 
 export default Header;

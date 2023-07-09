@@ -1,4 +1,3 @@
-
 async function ValidateToken() {
     const accessToken = localStorage.getItem('accessToken');
     try{

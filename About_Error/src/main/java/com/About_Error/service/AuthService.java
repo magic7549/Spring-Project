@@ -8,8 +8,10 @@ import com.About_Error.dto.LoginMemberRequestDto;
 import com.About_Error.dto.LoginMemberResponseDto;
 import com.About_Error.repository.MemberRepository;
 import com.About_Error.repository.RefreshTokenRepository;
+import io.jsonwebtoken.Claims;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -18,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -68,6 +71,12 @@ public class AuthService {
                 .build();
 
         return loginResponse;
+    }
+
+    public boolean logout(AccessTokenDto token) {
+        Claims claims = tokenProvider.parseClaims(token.getAccessToken());
+        refreshTokenRepository.delete(refreshTokenRepository.findByEmail(claims.getSubject()).get());
+        return true;
     }
 
     public boolean validateToken(AccessTokenDto token) {

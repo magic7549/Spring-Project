@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 
 //MUI UI
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
-
+import {
+  Card, 
+  CardActions, 
+  CardContent,
+  Box,
+  TextField,
+  Button,
+  Container
+} from '@mui/material';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -28,6 +29,7 @@ function Login() {
         const data = await response.json();
         const access = JSON.parse(JSON.stringify(data)).accessToken;
         localStorage.setItem('accessToken', access);
+        window.location.href = "/";
       }
     }catch (error){
       console.log(error);

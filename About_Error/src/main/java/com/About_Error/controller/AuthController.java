@@ -37,6 +37,11 @@ public class AuthController {
         return ResponseEntity.ok(response);
     }
 
+    @PostMapping("/logout")
+    public void logout(@RequestBody AccessTokenDto token) {
+        authService.logout(token);
+    }
+
     @PostMapping("/signup/email")
     public boolean hasEmail(@RequestBody HasMemberEmailRequestDto request) {
         return memberService.hasMemberEmail(request);

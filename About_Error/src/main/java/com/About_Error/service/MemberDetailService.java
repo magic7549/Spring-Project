@@ -18,6 +18,7 @@ import java.util.Collections;
 public class MemberDetailService implements UserDetailsService {
 
     private final MemberRepository memberRepository;
+
     private UserDetails createUserDetails(Member member) {
         GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(member.getAuthority().toString());
 
