@@ -23,33 +23,36 @@ public class TokenProvider {
 
     private static final String AUTHORITIES_KEY = "auth";
     private static final String BEARER_TYPE = "bearer";
-    private static final long ACCESS_TOKEN_EXPIRE_TIME = 30 * 60 * 1000L; // 30 minutes
-    private static final long REFRESH_TOKEN_EXPIRE_TIME = 7 * 24 * 60 * 60 * 1000L; // 7 days
+    //private static final long ACCESS_TOKEN_EXPIRE_TIME = 30 * 60 * 1000L; // 30 minutes
+    //private static final long REFRESH_TOKEN_EXPIRE_TIME = 7 * 24 * 60 * 60 * 1000L; // 7 days
     private final JwtProperties jwtProperties;
 
-    public String createAccessToken(Authentication authentication) {
+    //테스트용 access, refresh (시간 매우 짧음)
+    private static final long ACCESS_TOKEN_EXPIRE_TIME = 5 * 1000L; // 1s
+    private static final long REFRESH_TOKEN_EXPIRE_TIME = 5 * 1000L; // 10s
+
+
+    public String createAccessToken(String email) {
         long now = (new Date()).getTime();
         Date tokenExpiresIn = new Date(now + ACCESS_TOKEN_EXPIRE_TIME);
 
-        return generateToken(authentication, tokenExpiresIn);
+        return generateToken(email, tokenExpiresIn);
     }
 
-    public String createRefreshToken(Authentication authentication) {
+    public String createRefreshToken(String email) {
         long now = (new Date()).getTime();
         Date tokenExpiresIn = new Date(now + REFRESH_TOKEN_EXPIRE_TIME);
 
-        return generateToken(authentication, tokenExpiresIn);
+        return generateToken(email, tokenExpiresIn);
     }
 
     // 토큰 생성
-    public String generateToken(Authentication authentication, Date expire) {
-        String authorities = authentication.getAuthorities().stream()
-                .map(GrantedAuthority::getAuthority)
-                .collect(Collectors.joining(","));
+    private String generateToken(String email, Date expire) {
+        Claims claims = Jwts.claims().setSubject(email);
+        claims.put(AUTHORITIES_KEY, "ROLE_USER");
 
         return Jwts.builder()
-                .setSubject(authentication.getName())
-                .claim(AUTHORITIES_KEY, authorities)
+                .setClaims(claims)
                 .setExpiration(expire)
                 .signWith(SignatureAlgorithm.HS256, jwtProperties.getSecretKey())
                 .compact();

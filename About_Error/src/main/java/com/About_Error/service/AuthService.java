@@ -1,21 +1,16 @@
 package com.About_Error.service;
 
 import com.About_Error.config.jwt.TokenProvider;
+import com.About_Error.domain.Member;
 import com.About_Error.domain.RefreshToken;
-import com.About_Error.dto.AccessTokenDto;
-import com.About_Error.dto.AddMemberRequestDto;
-import com.About_Error.dto.LoginMemberRequestDto;
-import com.About_Error.dto.LoginMemberResponseDto;
+import com.About_Error.dto.*;
 import com.About_Error.repository.MemberRepository;
 import com.About_Error.repository.RefreshTokenRepository;
 import io.jsonwebtoken.Claims;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -26,7 +21,7 @@ import java.util.Optional;
 @Transactional
 public class AuthService {
 
-    private final AuthenticationManagerBuilder managerBuilder;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final MemberRepository memberRepository;
     private final RefreshTokenRepository refreshTokenRepository;
     private final TokenProvider tokenProvider;
@@ -40,17 +35,13 @@ public class AuthService {
     }
 
     public LoginMemberResponseDto login(LoginMemberRequestDto request) {
-        UsernamePasswordAuthenticationToken authenticationToken;
-        Authentication authentication;
-        try {
-            authenticationToken = new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword());
-            authentication = managerBuilder.getObject().authenticate(authenticationToken);
-        } catch (BadCredentialsException e){
+        Member member = memberService.findByEmail(request.getEmail());
+        if (!bCryptPasswordEncoder.matches(request.getPassword(), member.getPassword())) {
             return null;
         }
 
-        String accessToken = tokenProvider.createAccessToken(authentication);
-        String refreshToken = tokenProvider.createRefreshToken(authentication);
+        String accessToken = tokenProvider.createAccessToken(request.getEmail());
+        String refreshToken = tokenProvider.createRefreshToken(request.getEmail());
 
         refreshTokenRepository.save(RefreshToken.builder()
                 .refresh(refreshToken)
@@ -79,11 +70,24 @@ public class AuthService {
         return true;
     }
 
-    public boolean validateToken(AccessTokenDto token) {
-        return tokenProvider.validateToken(token.getAccessToken());
+    public boolean validateToken(String token) {
+        return tokenProvider.validateToken(token);
     }
 
-    public Optional<RefreshToken> findRefreshToken(String refresh) {
-        return refreshTokenRepository.findByRefresh(refresh);
+    public AccessTokenDto updateAccessToken(AccessTokenDto access) {
+        Claims claims = tokenProvider.parseClaims(access.getAccessToken());
+        RefreshToken refreshToken = refreshTokenRepository.findByEmail(claims.getSubject()).orElseThrow(() -> new IllegalArgumentException("리프레시 토큰을 찾을 수 없습니다."));
+
+        // 리프래시 토큰이 유효할 경우
+        if (validateToken(refreshToken.getRefresh())) {
+            AccessTokenDto accessToken = new AccessTokenDto();
+            accessToken.setAccessToken(tokenProvider.createAccessToken(claims.getSubject()));
+
+            return accessToken;
+        }
+
+        // 리프래시 토큰이 유효하지 않으므로 삭제
+        refreshTokenRepository.delete(refreshToken);
+        return null;
     }
 }

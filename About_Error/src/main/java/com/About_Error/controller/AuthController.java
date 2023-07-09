@@ -8,12 +8,14 @@ import com.About_Error.service.AuthService;
 import com.About_Error.service.MemberService;
 import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 public class AuthController {
@@ -49,7 +51,11 @@ public class AuthController {
 
     @PostMapping("/validateToken")
     public ResponseEntity validateToken(@RequestBody AccessTokenDto token) {
-        if (authService.validateToken(token)) {
+        if (token.getAccessToken() == null || token.getAccessToken().isEmpty() || token.getAccessToken().isBlank() || token.getAccessToken().equals("")) {
+            return ResponseEntity.status(HttpStatus.OK).body(false);
+        }
+
+        if (authService.validateToken(token.getAccessToken())) {
             return ResponseEntity.status(HttpStatus.OK).body(true);
         }
         else {
@@ -57,27 +63,20 @@ public class AuthController {
         }
     }
 
-//    @PostMapping("/refreshToken")
-//    public ResponseEntity requestRefresh(@RequestBody RefreshTokenDto refreshTokenDto) {
-//        RefreshToken refreshToken = authService.findRefreshToken(refreshTokenDto.getRefreshToken()).orElseThrow(() -> new IllegalArgumentException("Refresh token not found"));
-//        Claims claims = tokenProvider.parseClaims(refreshToken.getValue());
-//
-//        Long userId = Long.valueOf((Integer)claims.get("userId"));
-//
-//        Member member = memberService.getMember(userId).orElseThrow(() -> new IllegalArgumentException("Member not found"));
-//
-//
-//        List roles = (List) claims.get("roles");
-//        String email = claims.getSubject();
-//
-//        String accessToken = jwtTokenizer.createAccessToken(userId, email, roles);
-//
-//        MemberLoginResponseDto loginResponse = MemberLoginResponseDto.builder()
-//                .accessToken(accessToken)
-//                .refreshToken(refreshTokenDto.getRefreshToken())
-//                .memberId(member.getMemberId())
-//                .nickname(member.getName())
-//                .build();
-//        return new ResponseEntity(loginResponse, HttpStatus.OK);
-//    }
+    @PostMapping("/refreshToken")
+    public ResponseEntity updateAccessToken(@RequestBody AccessTokenDto token) {
+        if (token.getAccessToken() == null || token.getAccessToken().isEmpty() || token.getAccessToken().isBlank() || token.getAccessToken().equals("")) {
+            return ResponseEntity.ok().body("");
+        }
+
+        AccessTokenDto accessTokenDto = authService.updateAccessToken(token);
+        if (accessTokenDto != null) {
+            String accessToken = accessTokenDto.getAccessToken();
+            if (accessToken != null) {
+                return ResponseEntity.ok().body(accessToken);
+            }
+        }
+
+        return ResponseEntity.ok().body("");
+    }
 }

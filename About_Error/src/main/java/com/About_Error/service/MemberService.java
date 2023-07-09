@@ -32,6 +32,10 @@ public class MemberService {
                 .build());
     }
 
+    public Member findByEmail(String email) {
+        return memberRepository.findByEmail(email).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 email 입니다."));
+    }
+
     public boolean hasMemberEmail(HasMemberEmailRequestDto dto) {
         Optional<Member> member = memberRepository.findByEmail(dto.getEmail());
         if (member.isEmpty()) {
