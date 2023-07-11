@@ -1,5 +1,4 @@
 import React from 'react';
-import Login from '../components/Login';
 
 //Bootstrap Navbar
 import {
@@ -27,7 +26,8 @@ const Header = () => {
             <Nav.Link href="/temp">인증test</Nav.Link>
           </Nav>
           <Nav>
-            {accessToken ? (<Nav.Link href='/logout'>로그아웃</Nav.Link>) : (<><Nav.Link href="/login">로그인</Nav.Link><Nav.Link href="/signup">회원가입</Nav.Link></>)}
+            {accessToken ? (<Nav.Link href='/logout'>로그아웃</Nav.Link>) : (<><Nav.Link href="/login">로그인</Nav.Link>
+            <Nav.Link href="/signup">회원가입</Nav.Link></>)}
           </Nav>
         </Navbar.Collapse>
       </Container>

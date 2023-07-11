@@ -1,5 +1,3 @@
-
-
 async function Logout() {
     const accessToken = localStorage.getItem('accessToken');
 

@@ -3,7 +3,7 @@ package com.About_Error.service;
 import com.About_Error.domain.Authority;
 import com.About_Error.domain.Member;
 import com.About_Error.dto.AddMemberRequestDto;
-import com.About_Error.dto.FindMemberEmail;
+import com.About_Error.dto.FindMemberEmailDto;
 import com.About_Error.dto.FindMemberPassword;
 import com.About_Error.dto.HasMemberEmailRequestDto;
 import com.About_Error.repository.MemberRepository;
@@ -37,17 +37,12 @@ public class MemberService {
     }
 
     public boolean hasMemberEmail(HasMemberEmailRequestDto dto) {
-        Optional<Member> member = memberRepository.findByEmail(dto.getEmail());
-        if (member.isEmpty()) {
-            return false;
-        } else {
-            return true;
-        }
+        return memberRepository.existsByEmail(dto.getEmail());
     }
 
-    public String findMemberEmail(FindMemberEmail dto) {
+    public String findMemberEmail(FindMemberEmailDto dto) {
         String email = Optional.ofNullable(memberRepository.findEmailByNameAndPhone(dto.getName(), dto.getPhone())).orElse("null");
-        email = email.equals("null") ? "아이디가 존재하지 않습니다." : email;
+        email = email.equals("null") ? null : email;
         return email;
     }
 

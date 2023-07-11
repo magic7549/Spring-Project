@@ -1,55 +1,32 @@
-//package com.About_Error.controller;
-//
-//import com.About_Error.dto.AddMemberRequest;
-//import com.About_Error.dto.FindMemberEmail;
-//import com.About_Error.dto.FindMemberPassword;
-//import com.About_Error.service.MemberService;
-//import lombok.RequiredArgsConstructor;
-//import org.springframework.stereotype.Controller;
-//import org.springframework.ui.Model;
-//import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.PostMapping;
-//
-//@RequiredArgsConstructor
-//@Controller
-//public class MemberController {
-//
-//    private final MemberService memberService;
-//
-//    @GetMapping("/login")
-//    public String loginPage() {
-//        return "login";
-//    }
-//
-//    @PostMapping("/login")
-//    public String loginProcess() {
-//
-//        return "main";
-//    }
-//
-//    @GetMapping("/signup")
-//    public String signupPage() {
-//        return "signup";
-//    }
-//
-//    @PostMapping("/signup")
-//    public String signupProcess(AddMemberRequest request) {
-//        memberService.save(request);
-//
-//        return "redirect:/login";
-//    }
-//
-//    @GetMapping("/findEmail")
-//    public String findEmail() {
-//        return "/findEmail";
-//    }
-//
-//    @PostMapping("/findEmail")
-//    public String findEmailProcess(Model model, FindMemberEmail request) {
-//        model.addAttribute("email", memberService.findMemberEmail(request));
-//        return "/completeFindEmail";
-//    }
-//
+package com.About_Error.controller;
+
+import com.About_Error.dto.FindMemberEmailDto;
+import com.About_Error.dto.FindMemberPassword;
+import com.About_Error.service.MemberService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+@Slf4j
+@RequiredArgsConstructor
+@RestController
+public class MemberController {
+
+    private final MemberService memberService;
+
+    @PostMapping("/findEmail")
+    public ResponseEntity findEmail(@RequestBody FindMemberEmailDto request) {
+        String memberEmail = memberService.findMemberEmail(request);
+        log.info(memberEmail);
+        return ResponseEntity.ok(memberEmail);
+    }
+
 //    @GetMapping("/findPassword")
 //    public String findPassword() {
 //        return "/findPassword";
@@ -65,4 +42,4 @@
 //        }
 //        return "/completeFindPassword";
 //    }
-//}
+}

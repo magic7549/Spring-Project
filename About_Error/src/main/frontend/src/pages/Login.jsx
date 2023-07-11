@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Modal_Id from '../components/Modal_Id';
+import Modal_Pw from '../components/Modal_Pw';
 
 //MUI UI
 import {
@@ -36,11 +38,17 @@ function Login() {
     }
   };
 
+  // 아이디찾기 모달폼
+  const [ModalIdOn, setModalIdOn] = useState(false);
+
+  //비밀번호찾기 모달폼
+  const [ModalPassOn, setModalPassOn] = useState(false);
+
 
 
   return(
-    <Container maxWidth="sm">
-      <Card sx={{ minWidth: 275, maxWidth: "55vw" }}>
+    <Container style={{display:'flex', justifyContent:'center', marginTop:'200px',alignContent:'center'}}>
+      <Card sx={{ minWidth: 500}}>
         <CardContent>
           <Box onSubmit={handleSubmit}>
           {/* email */}
@@ -52,8 +60,14 @@ function Login() {
         </CardContent>
         <CardActions>
           <Button fullWidth variant="contained" onClick={() => handleSubmit()}>Login</Button>
-          <Button fullWidth variant="contained" >아이디 찾기</Button>
-          <Button fullWidth variant="contained" >비밀번호 찾기</Button>
+          
+          {/* 아이디찾기 */}
+          <Modal_Id show={ModalIdOn} onHide={()=>setModalIdOn(false)}/>
+          <Button fullWidth variant="contained" onClick={()=>setModalIdOn(true)}>아이디 찾기</Button>
+
+          {/* 비밀번호찾기 */}
+          <Modal_Pw show={ModalPassOn} onHide={()=>setModalPassOn(false)}/>
+          <Button fullWidth variant="contained" onClick={()=>setModalPassOn(true)}>비밀번호 찾기</Button>
         </CardActions>
       </Card>
     </Container>

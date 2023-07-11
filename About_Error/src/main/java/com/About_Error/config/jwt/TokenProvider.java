@@ -23,13 +23,13 @@ public class TokenProvider {
 
     private static final String AUTHORITIES_KEY = "auth";
     private static final String BEARER_TYPE = "bearer";
-    //private static final long ACCESS_TOKEN_EXPIRE_TIME = 30 * 60 * 1000L; // 30 minutes
-    //private static final long REFRESH_TOKEN_EXPIRE_TIME = 7 * 24 * 60 * 60 * 1000L; // 7 days
+    private static final long ACCESS_TOKEN_EXPIRE_TIME = 30 * 60 * 1000L; // 30 minutes
+    private static final long REFRESH_TOKEN_EXPIRE_TIME = 7 * 24 * 60 * 60 * 1000L; // 7 days
     private final JwtProperties jwtProperties;
 
     //테스트용 access, refresh (시간 매우 짧음)
-    private static final long ACCESS_TOKEN_EXPIRE_TIME = 5 * 1000L; // 1s
-    private static final long REFRESH_TOKEN_EXPIRE_TIME = 5 * 1000L; // 10s
+    //private static final long ACCESS_TOKEN_EXPIRE_TIME = 5 * 1000L; // 1s
+    //private static final long REFRESH_TOKEN_EXPIRE_TIME = 5 * 1000L; // 10s
 
 
     public String createAccessToken(String email) {

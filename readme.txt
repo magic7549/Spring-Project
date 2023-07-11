@@ -7,7 +7,7 @@ create table members (
     password CHAR(60) NOT NULL,
     name VARCHAR(50) NOT NULL,
     phone VARCHAR(20) NOT NULL,
-    role VARCHAR(20) NOT NULL,
+    authority VARCHAR(20) NOT NULL,
     signup_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 

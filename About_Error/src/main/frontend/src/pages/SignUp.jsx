@@ -1,12 +1,7 @@
 import React, { useState } from 'react'
 
 //MUI UI
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
+import {Card, CardActions, CardContent, Box, TextField, Button, Container} from '@mui/material';
 
 function SignUp() {
     //이메일, 비밀번호, 비밀번호 확인, 이름, 폰번호
@@ -27,6 +22,7 @@ function SignUp() {
     // 유효성 검사
     const [isName, setIsName] = useState(false);
     const [isEmail, setIsEmail] = useState(false);
+    const [isAvailableEmail, setIsAvailableEmail] = useState(false);
     const [isPassword, setIsPassword] = useState(false);
     const [isRePassword, setIsRePassword] = useState(false);
     const [isPhone, setIsPhone] = useState(false);
@@ -47,6 +43,28 @@ function SignUp() {
         setIsEmail(true);
       }
     };
+
+    //이메일 중복 검사
+    const hasEmail = async () => {
+      try{
+          console.log(email);
+          const response = await fetch('http://localhost:8080/signup/email', {
+              method: 'POST',
+              headers: {'Content-Type' : 'application/json'},
+              body: JSON.stringify({email}),
+          });
+          const data = await response.json();
+          if (data) {
+              alert("존재하는 email입니다.");
+              setIsAvailableEmail(false);
+          } else {
+              alert("사용 가능한 email입니다.");
+              setIsAvailableEmail(true);
+          }
+      } catch (error) {
+        console.log(error);
+      }
+  };
 
 
     //비밀번호
@@ -113,8 +131,7 @@ function SignUp() {
     };
 
     //signUpHandler 
-    const signUpHandler = async (e) => {
-      e.preventDefault();
+    const signUpHandler = async () => {
       try{
           const response = await fetch('http://localhost:8080/signup',{
               method: 'POST',
@@ -131,16 +148,17 @@ function SignUp() {
 
 
     return (
-      <Card sx={{minWidth:275, maxWidth:"55vw"}}>
+      <Container style={{display:'flex', justifyContent:'center', marginTop:'100px',alignContent:'center'}}>
+      <Card sx={{minWidth:700}} >
         <CardContent>
-        <Box onSubmit={signUpHandler}>
+        <Box>
             {/* email */}
             <div>
-              <TextField fullWidth label="이메일 주소" variant="standard" type="email" name="email" value={email} onClick={(e) => setEmail(e.target.value)} onChange={onChangeEmail}/>
-              {email.length > 0 && <span className={`message ${isEmail ? 'success' : 'error'}`} style={{color:'red'}}>{emailMessage}</span>}
+              <TextField fullWidth label="이메일 주소" variant="standard" type="email" name="email" value={email} onClick={(e) => setEmail(e.target.value)} onChange={onChangeEmail} disabled={isAvailableEmail} />
+              {email.length > 0 && <span className={`message ${isEmail ? 'success' : 'error'}`} style={{color: isEmail? 'blue' : 'red'}}>{emailMessage}</span>}
               <br/>
               <CardActions>
-                <Button variant='contained' type="button">중복확인</Button>
+                <Button variant='contained' onClick={hasEmail} type="button">중복확인</Button>
               </CardActions>
             </div>
             
@@ -149,7 +167,7 @@ function SignUp() {
             <div>
               <TextField fullWidth  label="비밀번호" variant="standard" type="password" name="password" value={password} onClick={(e) => setPassword(e.target.value)} onChange={onChangePassword}/>
               {password.length > 0 && (
-                <span className={`message ${isPassword ? 'success' : 'error'}`} style={{color:'red'}}>{passwordMessage}</span>
+                <span className={`message ${isPassword ? 'success' : 'error'}`} style={{color: isPassword? 'blue' : 'red'}}>{passwordMessage}</span>
               )}
             </div>
             
@@ -159,7 +177,7 @@ function SignUp() {
               <TextField fullWidth  label="비밀번호 확인" variant="standard" type="password" name="RePassword" value={RePassword} onClick={(e) => setRePassword(e.target.value)} 
               onChange={onChangeRePassword}/>
               {RePassword.length > 0 && (
-              <span className={`message ${isRePassword ? 'success' : 'error'}`} style={{color:'red'}}>{RePasswordMessage}</span>
+              <span className={`message ${isRePassword ? 'success' : 'error'}`} style={{color: isRePassword ? 'blue' : 'red'}}>{RePasswordMessage}</span>
               )}
             </div>
 
@@ -168,7 +186,7 @@ function SignUp() {
             <div>
               <TextField fullWidth  label="이름" variant="standard" type="text" name="name" value={name} onClick={(e) => setName(e.target.value)}
               onChange={onChangeName} />
-              {name.length > 0 && <span className={`message ${isName ? 'success' : 'error'}`} style={{color:'red'}}>{nameMessage}</span>}
+              {name.length > 0 && <span className={`message ${isName ? 'success' : 'error'}`} style={{color: isName? 'blue' : 'red'}}>{nameMessage}</span>}
             </div>
             
             <br/>
@@ -176,7 +194,7 @@ function SignUp() {
               <TextField fullWidth  label="휴대전화('-' 없이 번호만 입력해주세요)" variant="standard" type="text" name="phone" value={phone} onClick={(e) => setPhone(e.target.value)}
               onChange={onChangePhone} />
               {phone.length > 0 && (
-              <span className={`message ${isPhone ? 'success' : 'error'}`} style={{ color: 'red' }}>
+              <span className={`message ${isPhone ? 'success' : 'error'}`} style={{ color: isPhone? 'blue' : 'red' }}>
               {PhoneMessage}
               </span>
               )}
@@ -185,9 +203,10 @@ function SignUp() {
         </Box>
         </CardContent>
         <CardActions>
-          <Button fullWidth variant='contained' onClick={()=> signUpHandler}type="submit">SignUp</Button>
+          <Button fullWidth variant='contained' onClick={signUpHandler} type="button" disabled={!isName || !isEmail || !isAvailableEmail || !isPassword || !isRePassword || !isPhone}>SignUp</Button>
         </CardActions>
       </Card>
+      </Container>
     );
 }
 
