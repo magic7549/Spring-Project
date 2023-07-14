@@ -1,5 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Single+Day&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Single+Day&display=swap');
+
+body{
+  font-family: 'Black Han Sans', sans-serif;
+  font-family: 'Single Day', cursive;
+}
 
 .bg-color{
   background: linear-gradient(rgb(27, 0, 49), rgb(99, 99, 215), rgb(253, 193, 203));
+}
+
+
+.page_txt05{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card_gap{
+  padding-right: 30px;
 }

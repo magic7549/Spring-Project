@@ -1,5 +1,7 @@
 package com.About_Error.service;
 
+import com.About_Error.config.exception.SignupDuplicateException;
+import com.About_Error.config.exception.ErrorCode;
 import com.About_Error.config.jwt.TokenProvider;
 import com.About_Error.domain.Member;
 import com.About_Error.domain.RefreshToken;
@@ -12,8 +14,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Slf4j
 @Service
@@ -29,7 +29,9 @@ public class AuthService {
 
     public void signup(AddMemberRequestDto request) {
         if (memberRepository.existsByEmail(request.getEmail())) {
-            throw new RuntimeException("이미 가입되어 있는 유저입니다");
+            throw new SignupDuplicateException("이미 가입되어 있는 유저입니다", ErrorCode.EMAIL_DUPLICATION);
+        } else if (memberRepository.existsByPhone(request.getPhone())) {
+            throw new SignupDuplicateException("이미 사용중인 번호입니다.", ErrorCode.PHONE_DUPLICATION);
         }
         memberService.save(request);
     }

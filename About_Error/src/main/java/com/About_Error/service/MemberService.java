@@ -1,10 +1,12 @@
 package com.About_Error.service;
 
+import com.About_Error.config.exception.ErrorCode;
+import com.About_Error.config.exception.MemberIsNullException;
 import com.About_Error.domain.Authority;
 import com.About_Error.domain.Member;
 import com.About_Error.dto.AddMemberRequestDto;
 import com.About_Error.dto.FindMemberEmailDto;
-import com.About_Error.dto.FindMemberPassword;
+import com.About_Error.dto.FindMemberPasswordDto;
 import com.About_Error.dto.HasMemberEmailRequestDto;
 import com.About_Error.repository.MemberRepository;
 import jakarta.transaction.Transactional;
@@ -47,12 +49,12 @@ public class MemberService {
     }
 
     @Transactional
-    public String updatePassword(FindMemberPassword dto) {
+    public String updatePassword(FindMemberPasswordDto dto) {
         Optional<Member> member = memberRepository.findByEmail(dto.getEmail());
 
         // 회원정보가 없을 경우 null
         if (member.isEmpty() || !member.get().getPhone().equals(dto.getPhone())) {
-            return null;
+            throw new MemberIsNullException("회원정보가 없습니다.", ErrorCode.NO_MEMBER);
         }
 
         // 랜덤 임시 비밀번호 발급

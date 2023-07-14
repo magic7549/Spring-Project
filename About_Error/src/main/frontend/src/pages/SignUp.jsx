@@ -46,6 +46,13 @@ function SignUp() {
 
     //이메일 중복 검사
     const hasEmail = async () => {
+      //입력안했거나 띄어쓰기만 했을 경우 제외
+      if (email.trim() == '') {
+        setIsAvailableEmail(false);
+        alert('email을 입력해주세요.');
+        return;
+      }
+
       try{
           console.log(email);
           const response = await fetch('http://localhost:8080/signup/email', {
@@ -140,12 +147,23 @@ function SignUp() {
           });
           if(response.status == 200){
               alert("Success!");
+              window.location.href = "/login";
+          }
+          else {
+            const data = await response.json();
+            switch(data.code){
+              case 'PHONE-DUPLICATED':
+                alert('이미 등록된 번호입니다.');
+                break;
+              case 'EMAIL-DUPLICATED':
+                alert('이미 등록된 이메일입니다.');
+                break;
+            }
           }
       } catch (error) {
           console.log(error);
       }
-  };
-
+    };
 
     return (
       <Container style={{display:'flex', justifyContent:'center', marginTop:'100px',alignContent:'center'}}>

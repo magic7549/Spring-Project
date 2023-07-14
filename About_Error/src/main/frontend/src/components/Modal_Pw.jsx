@@ -18,19 +18,22 @@ const Modal_Pw = ({show, onHide}) => {
 
       const handleSubmit = async (event) => {
         try{
-          const response = await fetch('http://localhost:8080/member/exist',{
+          const response = await fetch('http://localhost:8080/findPassword',{
             method: 'POST',
             headers: {'Content-Type' : 'application/json'},
             body: JSON.stringify({email, phone}),
           });
-          if(response.status == 404){
-            alert("이메일 또는 전화번호가 일치하지 않습니다.");
+          if(response.status == 200){
+            const data = await response.text();
+            alert('임시 비밀번호 : ' + data);
           }
-          else if (response.ok) {
+          else {
             const data = await response.json();
-            const access = JSON.parse(JSON.stringify(data)).accessToken;
-            localStorage.setItem('accessToken', access);
-            window.location.href = "/";
+            switch(data.code){
+              case 'NO-MEMBER':
+                alert('회원정보가 없습니다.');
+                break;
+            }
           }
         }catch (error){
           console.log(error);
@@ -54,21 +57,21 @@ const Modal_Pw = ({show, onHide}) => {
       }
     };
     
-          //폰 유효성검사
-          const onChangePhone = async(e) => {
-            e.preventDefault();
-            const phoneRegex = /^\d{3}\d{3,4}\d{4}$/;
-            const phoneCurrent = e.target.value;
-            setPhone(phoneCurrent);
-            
-            if (!phoneRegex.test(phoneCurrent)) {
-              setPhoneMessage('핸드폰 번호 형식이 올바르지 않습니다!');
-              setIsPhone(false);
-            } else {
-              setPhoneMessage('올바른 핸드폰 번호 형식입니다.');
-              setIsPhone(true);
-            }
-          };
+    //폰 유효성검사
+    const onChangePhone = async(e) => {
+      e.preventDefault();
+      const phoneRegex = /^\d{3}\d{3,4}\d{4}$/;
+      const phoneCurrent = e.target.value;
+      setPhone(phoneCurrent);
+      
+      if (!phoneRegex.test(phoneCurrent)) {
+        setPhoneMessage('핸드폰 번호 형식이 올바르지 않습니다!');
+        setIsPhone(false);
+      } else {
+        setPhoneMessage('올바른 핸드폰 번호 형식입니다.');
+        setIsPhone(true);
+      }
+    };
 
   return (
     <Modal
@@ -83,9 +86,9 @@ const Modal_Pw = ({show, onHide}) => {
           비밀번호 찾기
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body onSubmit={handleSubmit}>
+      <Modal.Body>
         <FloatingLabel
-          controlId="floatingInput"
+          controlId="floatingEmail"
           label="이메일 주소"
           className="mb-3"
         >
@@ -94,7 +97,7 @@ const Modal_Pw = ({show, onHide}) => {
           </FloatingLabel>
 
           <FloatingLabel
-          controlId="floatingInput"
+          controlId="floatingPhone"
           label="휴대전화('-' 없이 번호만 입력해주세요)"
           className="mb-3"
         >
@@ -104,7 +107,7 @@ const Modal_Pw = ({show, onHide}) => {
         </FloatingLabel>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="primary" type="button" onClick={onChangePhone} disabled={!isEmail && !isPhone}>
+        <Button variant="primary" type="button" onClick={handleSubmit} disabled={!isEmail && !isPhone}>
           Click
         </Button>
         <Button onClick={onHide}>Close</Button>
