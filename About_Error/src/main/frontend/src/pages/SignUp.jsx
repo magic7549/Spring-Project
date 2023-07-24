@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 //MUI UI
 import {Card, CardActions, CardContent, Box, TextField, Button, Container} from '@mui/material';
 
+import '../css/SignUp.css'
+
 function SignUp() {
     //이메일, 비밀번호, 비밀번호 확인, 이름, 폰번호
     const [email, setEmail] = useState('');
@@ -166,7 +168,8 @@ function SignUp() {
     };
 
     return (
-      <Container style={{display:'flex', justifyContent:'center', marginTop:'100px',alignContent:'center'}}>
+      <div className="bg-color">
+      <Container style={{display:'flex', justifyContent:'center', marginTop:'0px',alignContent:'center'}}>
       <Card sx={{minWidth:700}} >
         <CardContent>
         <Box>
@@ -225,6 +228,7 @@ function SignUp() {
         </CardActions>
       </Card>
       </Container>
+      </div>
     );
 }
 

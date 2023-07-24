@@ -13,6 +13,9 @@ import {
   Container
 } from '@mui/material';
 
+//css
+import '../css/Login.css';
+
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -47,7 +50,8 @@ function Login() {
 
 
   return(
-    <Container style={{display:'flex', justifyContent:'center', marginTop:'200px',alignContent:'center'}}>
+    <div className="bg-color">
+    <Container className='Container_box' style={{display:'flex', justifyContent:'center',alignContent:'center'}}>
       <Card sx={{ minWidth: 500}}>
         <CardContent>
           <Box onSubmit={handleSubmit}>
@@ -71,6 +75,7 @@ function Login() {
         </CardActions>
       </Card>
     </Container>
+    </div>
   );
 }
 

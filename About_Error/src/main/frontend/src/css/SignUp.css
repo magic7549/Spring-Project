@@ -1,0 +1,9 @@
+/* Background */
+.bg-color{
+  background: linear-gradient(rgb(27, 0, 49), rgb(99, 99, 215), rgb(253, 193, 203));
+}
+
+.css-11y45q5-MuiPaper-root-MuiCard-root{
+  margin: 100px;
+  padding: 20px;
+}

@@ -1,0 +1,40 @@
+.Table_Box{
+  display: flex;
+  margin: 20px;
+  /* flex: 4; */
+}
+
+.MuiDataGrid-columnHeaders{
+  padding-left: 20px;
+}
+
+.css-1lymaxv-MuiDataGrid-root .MuiDataGrid-row:not(.MuiDataGrid-row--dynamicHeight)>.MuiDataGrid-cell{
+  padding-left: 29px;
+}
+
+.titleList{
+  display: flex;
+  align-items: center;
+}
+
+.titleListImg{
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.learnBtn{
+  width: 50px;
+  border: 1px solid transparent;
+  padding: 5px;
+  background: linear-gradient(rgb(164, 241, 191), rgb(239, 251, 222));
+}
+
+.startBtn{
+  width: 50px;
+  border: 1px solid transparent;
+  padding: 5px;
+  background: linear-gradient(rgb(163, 198, 255), rgb(213, 254, 253));
+}

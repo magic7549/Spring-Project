@@ -5,9 +5,8 @@ import { Animator, ScrollContainer, ScrollPage, batch, Fade, FadeIn, FadeOut, Mo
 
 //bootstrap import 
 import {Button, Card} from 'react-bootstrap';
-//css import
+//css 
 import '../css/main.css'
-
 
 function Main() {
 
@@ -36,7 +35,6 @@ function Main() {
 
 
   return (
-  <body>
   <div className="bg-color">
   <ScrollContainer>
 
@@ -47,17 +45,18 @@ function Main() {
     </Animator>
   </ScrollPage>
 
-  {/* page_text02 */}
-  <ScrollPage>
-    <Animator animation={ZoomInScrollOut}>
-      <span style={{ fontSize: "70px" }}>I'm ITe's Unique Learning Approach Revealed!</span>
-    </Animator>
-  </ScrollPage>
 
-  {/* page_text03 */}
+  {/* page_text02 */}
   <ScrollPage>
     <Animator animation={FadeUp}>
       <span style={{ fontSize: "60px", color:'white'}}>I'm As someone who wants to stay informed about IT trends, join ITe right away!</span>
+    </Animator>
+  </ScrollPage>
+
+    {/* page_text03 */}
+    <ScrollPage>
+    <Animator animation={ZoomInScrollOut}>
+      <span style={{ fontSize: "70px" }}>I'm ITe's Unique Learning Approach Revealed!</span>
     </Animator>
   </ScrollPage>
 
@@ -79,6 +78,7 @@ function Main() {
       </span>
     </div>
   </ScrollPage>
+  
 
   {/* page_text05 */}
   <ScrollPage>
@@ -143,9 +143,7 @@ function Main() {
     </Animator>
   </ScrollPage>
 </ScrollContainer>
-
 </div>
-</body>
   );
 }
 

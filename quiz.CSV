@@ -1,0 +1,3 @@
+quiz_title,description,answer_ko,answer_en,answer_abbr
+Java,"복잡한 자료, 모듈, 시스템 등으로부터 핵심적인 개념 또는 기능을 간추려 내는 것",추상화,abstraction,NULL
+Java,"객체의 속성(data fields)과 행위(메서드, methods)를 하나로 묶고, 실제 구현 내용 일부를 외부에 감추어 은닉하는 것",캡슐화,encapsulation,NULL

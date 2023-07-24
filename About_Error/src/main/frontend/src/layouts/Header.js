@@ -10,6 +10,9 @@ import {
 //Bootstrap css
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+//css
+import '../css/Header.css';
+
 const Header = () => {
   const accessToken = localStorage.getItem('accessToken');
 
@@ -20,9 +23,9 @@ const Header = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#">IT Quiz</Nav.Link>
-            <Nav.Link href="#">Error</Nav.Link>
-            <Nav.Link href="#">Communication</Nav.Link>
+            <Nav.Link href="/ItQuiz">IT Quiz</Nav.Link>
+            <Nav.Link href="/error">Error</Nav.Link>
+            <Nav.Link href="/post">Post</Nav.Link>
             <Nav.Link href="/temp">인증test</Nav.Link>
           </Nav>
           <Nav>

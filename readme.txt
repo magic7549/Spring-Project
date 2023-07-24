@@ -13,5 +13,22 @@ create table members (
 
 create table refreshes (
 	refresh VARCHAR(200) NOT NULL PRIMARY KEY,
-    email VARCHAR(50) NOT NULL UNIQUE
+    email VARCHAR(50) NOT NULL UNIQUE,
+    FOREIGN KEY (email) REFERENCES members(email)
+);
+
+create table quiz_list (
+	idx INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(50) NOT NULL,
+    title_img VARCHAR(200),
+    content VARCHAR(50) NOT NULL
+);
+
+create table quiz (
+	idx INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    quiz_title VARCHAR(50) NOT NULL,
+    description VARCHAR(200) NOT NULL,
+    answer_ko VARCHAR(50) NOT NULL,
+    answer_en VARCHAR(50) NOT NULL,
+    answer_abbr VARCHAR(50)
 );
