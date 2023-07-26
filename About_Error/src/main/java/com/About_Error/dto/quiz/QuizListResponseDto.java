@@ -1,6 +1,6 @@
-package com.About_Error.dto;
+package com.About_Error.dto.quiz;
 
-import com.About_Error.domain.QuizList;
+import com.About_Error.domain.quiz.QuizList;
 import lombok.Builder;
 import lombok.Getter;
 

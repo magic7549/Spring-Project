@@ -1,4 +1,4 @@
-package com.About_Error.domain;
+package com.About_Error.domain.quiz;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;

@@ -27,8 +27,10 @@ create table quiz_list (
 create table quiz (
 	idx INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     quiz_title VARCHAR(50) NOT NULL,
-    description VARCHAR(200) NOT NULL,
-    answer_ko VARCHAR(50) NOT NULL,
-    answer_en VARCHAR(50) NOT NULL,
-    answer_abbr VARCHAR(50)
+    question VARCHAR(200) NOT NULL,
+    option1 VARCHAR(200) NOT NULL,
+    option2 VARCHAR(200) NOT NULL,
+    option3 VARCHAR(200) NOT NULL,
+    option4 VARCHAR(200) NOT NULL,
+    answer INT NOT NULL
 );
