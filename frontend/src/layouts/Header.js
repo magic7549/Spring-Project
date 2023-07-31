@@ -17,7 +17,7 @@ const Header = () => {
   const accessToken = localStorage.getItem('accessToken');
 
   return (
-    <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
+    <Navbar collapseOnSelect expand="lg" className="fixed-top bg-body-tertiary">
       <Container>
         <Navbar.Brand href="/">ITe</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

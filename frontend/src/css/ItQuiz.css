@@ -1,7 +1,8 @@
 .Table_Box{
   display: flex;
   margin: 20px;
-  /* flex: 4; */
+  margin-top: 100px;
+  background:#eee;
 }
 
 .MuiDataGrid-columnHeaders{
@@ -38,3 +39,6 @@
   padding: 5px;
   background: linear-gradient(rgb(163, 198, 255), rgb(213, 254, 253));
 }
+
+
+
