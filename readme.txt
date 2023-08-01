@@ -34,3 +34,12 @@ create table quiz (
     option4 VARCHAR(200) NOT NULL,
     answer INT NOT NULL
 );
+
+create table code_post (
+	idx INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(50) NOT NULL,
+    content TEXT NOT NULL,
+    writer VARCHAR(50) NOT NULL,
+    post_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (writer) REFERENCES members(email)
+);

@@ -56,7 +56,6 @@ function SignUp() {
       }
 
       try{
-          console.log(email);
           const response = await fetch('http://localhost:8080/signup/email', {
               method: 'POST',
               headers: {'Content-Type' : 'application/json'},
