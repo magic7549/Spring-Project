@@ -1,11 +1,11 @@
-package com.About_Error.dto.post;
+package com.About_Error.dto.error;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class AddPostRequestDto {
+public class AddErrorPostRequestDto {
 
     private String title;
     private String content;

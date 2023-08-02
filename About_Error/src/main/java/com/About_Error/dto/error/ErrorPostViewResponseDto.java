@@ -1,13 +1,12 @@
-package com.About_Error.dto.post;
+package com.About_Error.dto.error;
 
-import com.About_Error.domain.post.Post;
 import lombok.Builder;
 import lombok.Getter;
 
 import java.sql.Timestamp;
 
 @Getter
-public class PostViewResponseDto {
+public class ErrorPostViewResponseDto {
 
     private String title;
     private String content;
@@ -15,7 +14,7 @@ public class PostViewResponseDto {
     private Timestamp postDate;
 
     @Builder
-    public PostViewResponseDto(String title, String content, String writer, Timestamp postDate) {
+    public ErrorPostViewResponseDto(String title, String content, String writer, Timestamp postDate) {
         this.title = title;
         this.content = content;
         this.writer = writer;

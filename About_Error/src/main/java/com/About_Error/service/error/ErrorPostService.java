@@ -1,9 +1,9 @@
-package com.About_Error.service.post;
+package com.About_Error.service.error;
 
 import com.About_Error.config.jwt.TokenProvider;
-import com.About_Error.domain.post.Post;
-import com.About_Error.dto.post.AddPostRequestDto;
-import com.About_Error.repository.post.PostRepository;
+import com.About_Error.domain.error.ErrorPost;
+import com.About_Error.dto.error.AddErrorPostRequestDto;
+import com.About_Error.repository.error.ErrorPostRepository;
 import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,26 +12,26 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class PostService {
+public class ErrorPostService {
 
-    private final PostRepository postRepository;
+    private final ErrorPostRepository errorPostRepository;
     private final TokenProvider tokenProvider;
 
     // 게시글 리스트 조회
-    public List<Post> postFindAll() {
-        return postRepository.findAll();
+    public List<ErrorPost> errorPostFindAll() {
+        return errorPostRepository.findAll();
     }
 
     // 게시글 조회
-    public Post postFind(Long idx) {
-        return postRepository.findById(idx).get();
+    public ErrorPost errorPostFindById(Long idx) {
+        return errorPostRepository.findById(idx).get();
     }
 
     // 게시글 등록
-    public Long savePost(AddPostRequestDto dto) {
+    public Long saveErrorPost(AddErrorPostRequestDto dto) {
         Claims claims = tokenProvider.parseClaims(dto.getAccessToken());
 
-        return postRepository.save(Post.builder()
+        return errorPostRepository.save(ErrorPost.builder()
                 .title(dto.getTitle())
                 .content(dto.getContent())
                 .writer(claims.getSubject())

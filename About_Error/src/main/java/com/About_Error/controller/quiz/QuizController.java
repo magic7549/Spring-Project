@@ -1,4 +1,4 @@
-package com.About_Error.controller;
+package com.About_Error.controller.quiz;
 
 import com.About_Error.dto.quiz.QuizListResponseDto;
 import com.About_Error.dto.quiz.QuizResponseDto;

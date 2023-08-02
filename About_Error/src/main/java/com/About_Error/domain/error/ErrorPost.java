@@ -1,4 +1,4 @@
-package com.About_Error.domain.post;
+package com.About_Error.domain.error;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -10,12 +10,12 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.sql.Timestamp;
 
-@Table(name = "code_post")
+@Table(name = "error_post")
 @EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-public class Post {
+public class ErrorPost {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,7 +36,7 @@ public class Post {
     private Timestamp postDate;
 
     @Builder
-    public Post(String title, String content, String writer) {
+    public ErrorPost(String title, String content, String writer) {
         this.title = title;
         this.content = content;
         this.writer = writer;
