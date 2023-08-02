@@ -35,7 +35,7 @@ create table quiz (
     answer INT NOT NULL
 );
 
-create table code_post (
+create table error_post (
 	idx INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(50) NOT NULL,
     content TEXT NOT NULL,
