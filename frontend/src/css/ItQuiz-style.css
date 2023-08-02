@@ -14,11 +14,11 @@ body{
 }
 .question{
   margin:8px;
-  box-shadow: 0px 0px 10px 1px #a2a3a3;
+  box-shadow: 0px 0px 10px 1px #c8c8c8;
   border-radius: 5px;
-  padding:5px;
-  font-size: large;
-  font-weight: 600;
+  padding:20px;
+  font-size: 17px;
+  font-weight: bold;
   min-width: 100%;
   min-height: 90px;
   display: flex;
@@ -49,23 +49,25 @@ body{
 }
 
 .checked{
-  background: linear-gradient(rgb(164, 241, 191), rgb(239, 251, 222));
+  background: linear-gradient(rgb(163, 198, 255), rgb(213, 254, 253));
   font-weight: bolder;
-  color: blue;
-  box-shadow: 5px 5px rgba(78, 69, 78, 0.652);
+
+  box-shadow: 5px 5px #c8c8c8;
 }
 .option-btn:hover{
-  background: linear-gradient(rgb(164, 241, 191), rgb(239, 251, 222));
+  background: linear-gradient(rgb(163, 198, 255), rgb(213, 254, 253));
+  color: blue;
+  font-weight: bolder;
 }
 #next-button{
-  padding:10px;
+  padding:5px;
   border:none;
-  background: linear-gradient(rgb(164, 241, 191), rgb(239, 251, 222));
-  background: linear-gradient(rgb(164, 241, 191), rgb(239, 251, 222));
+  background: linear-gradient(rgb(163, 198, 255), rgb(213, 254, 253));
+  background: linear-gradient(rgb(163, 198, 255), rgb(213, 254, 253));
   color:rgb(0, 0, 0);
   border-radius: 5px;
-  box-shadow: 3px 3px 2px 1px rgb(127, 109, 109);
-  font-size: larger;
+  box-shadow: 3px 3px 2px 1px #c8c8c8;
+  font-size: 18px;
   font-weight: bold;
   transition: 0.2s;
   width:100px;
@@ -79,5 +81,8 @@ body{
   position: absolute;
   top:30%;
   font-size: 40px;
-  text-align: center;  
+  text-align: center;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.579);  
+  color: rgb(255, 255, 255);
 }

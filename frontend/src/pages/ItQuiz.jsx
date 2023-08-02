@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { Link } from 'react-router-dom';
+import Modal_Learn from '../components/Modal_Learn';
 
 //css
 import '../css/ItQuiz.css';
 
 function ItQuiz() {
   const [quizList, setQuizList] = useState([]);
+
+  //Modal_Learn
+  const [ModalLearnOn, setModalLearnOn] = useState(false);
+
 
   // DB에서 퀴즈 목록 로드
   useEffect(() => {
@@ -51,9 +56,12 @@ function ItQuiz() {
       renderCell : (params) => {
   
         return (
-            <Link key={params.id} to={'/ItQuiz/' + params.id}>
-              <button className="learnBtn">Learn</button>
-            </Link>
+
+          <>
+          <Modal_Learn show={ModalLearnOn} onHide={()=>setModalLearnOn(false)}/>
+          <button onClick={()=>setModalLearnOn(true)} className="learnBtn">Learn</button>
+          </>
+
         )
       },
     },

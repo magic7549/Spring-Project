@@ -1,0 +1,16 @@
+.modal-backdrop{
+  background: #00000045;
+}
+
+
+.learn-btn{
+  color: black;
+  background: none;
+  border: none;
+  font-weight: bold;
+}
+
+.learn-btn:hover{
+  background: linear-gradient(rgb(164, 241, 191), rgb(239, 251, 222));
+  color: black;
+}

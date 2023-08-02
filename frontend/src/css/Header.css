@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Single+Day&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Single+Day&display=swap');
 
 .bg-body-tertiary{
   background: linear-gradient(rgb(255, 255, 255), rgb(253, 253, 253));
@@ -8,6 +8,8 @@
   color: black;
   font-size: 30px;
   font-family: 'Black Han Sans', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
   font-family: 'Single Day', cursive;
 }
 
@@ -19,6 +21,8 @@
   color: black;
   font-size: 20px;
   font-family: 'Black Han Sans', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
   font-family: 'Single Day', cursive;
 }
 

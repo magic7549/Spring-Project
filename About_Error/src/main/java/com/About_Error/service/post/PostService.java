@@ -8,12 +8,24 @@ import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class PostService {
 
     private final PostRepository postRepository;
     private final TokenProvider tokenProvider;
+
+    // 게시글 리스트 조회
+    public List<Post> postFindAll() {
+        return postRepository.findAll();
+    }
+
+    // 게시글 조회
+    public Post postFind(Long idx) {
+        return postRepository.findById(idx).get();
+    }
 
     // 게시글 등록
     public Long savePost(AddPostRequestDto dto) {

@@ -1,0 +1,22 @@
+.error_box{
+  margin-top: 100px;
+}
+
+.search{
+  padding: 5px;
+  font-size: 20px;
+  border-radius: 5px;
+}
+
+.list{
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+
+.listItem{
+  margin-bottom: 20px;
+  font-size: 25px;
+  color: #444;
+  font-weight: 300;
+}

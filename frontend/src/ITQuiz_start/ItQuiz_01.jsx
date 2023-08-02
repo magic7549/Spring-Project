@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import ItQuizResult from './Data/ItQuizResult';
+//css
 import '../css/ItQuiz-style.css';
 
 function ItQuiz_01() {
@@ -12,6 +13,8 @@ function ItQuiz_01() {
   const [showResult,setShowResult]=useState(false);
 
   const [quizList, setQuizList] = useState([]);
+
+
 
   // DB에서 퀴즈 목록 로드
   useEffect(() => {

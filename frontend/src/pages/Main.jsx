@@ -126,7 +126,7 @@ function Main() {
               <Card.Text>
               You can gain a wide range of knowledge by solving IT quizzes!
               </Card.Text>
-              <Button className='btn' onClick={ItQuizPage}>Click</Button>
+              <Button className='main-btn' onClick={ItQuizPage}>Click</Button>
               </Card.Body>
             </Card >
           </Col>

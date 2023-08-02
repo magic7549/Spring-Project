@@ -1,0 +1,35 @@
+/* 내용 */
+.post_content {
+    position: relative;
+    border: 0.0625rem solid #d7e2eb;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    padding: 1.5rem;
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 4rem;
+}
+
+/* 기본 글
+.post_content div {
+    
+}
+*/
+
+/* 제목1, ..., 제목6
+.post_content h1 {
+    
+}
+*/
+
+/* 인용 글
+.post_content blockquote {
+    
+}
+*/
+
+/* 코드 블럭 */
+.post_content pre {
+    border: 0.0625rem solid #d7e2eb;
+    border-radius: 0.75rem;
+}

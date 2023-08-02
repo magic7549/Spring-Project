@@ -31,6 +31,15 @@
   border: 1px solid transparent;
   padding: 5px;
   background: linear-gradient(rgb(164, 241, 191), rgb(239, 251, 222));
+  border-radius: 10px;
+  border: none;
+}
+
+.learnBtn:hover{
+  font-size: 15px;
+  font-weight: bold;
+  background: #eee;
+  color: rgb(1, 71, 1);
 }
 
 .startBtn{
@@ -38,6 +47,15 @@
   border: 1px solid transparent;
   padding: 5px;
   background: linear-gradient(rgb(163, 198, 255), rgb(213, 254, 253));
+  border-radius: 10px;
+  border: none;
+}
+
+.startBtn:hover{
+  font-size: 15px;
+  font-weight: bold;
+  background: #eee;
+  color: rgb(0, 15, 174);
 }
 
 
